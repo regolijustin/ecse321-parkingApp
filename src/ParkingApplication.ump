@@ -1,0 +1,87 @@
+class Employee
+{
+  isA AccountHolder;
+}
+
+class AccountHolder
+{
+   
+  name;
+  email;
+  number;
+}
+
+class Service
+{
+}
+
+class Customer
+{
+  isA AccountHolder;
+  licensePlateNumber;
+  
+}
+
+class NonMonthlyUser
+{
+  isA Customer;
+}
+
+class Servicing
+{
+  isA Service;
+}
+
+class Parking
+{
+  isA Service;
+  * -> 1 ParkingSpot;
+}
+
+class MonthlyUser
+{
+  isA Customer;
+  * -> 1 ParkingSpot;
+}
+
+class Owner
+{
+  isA AccountHolder;
+
+}
+
+class ParkingSpot
+{
+  Floor floor;
+}
+
+class ParkingApplication
+{
+  1 <@>- 0..1 Owner;
+  1 <@>- * AccountHolder;
+  1 <@>- * Bill;
+  1 <@>- * ServiceRequest;
+  1 <@>- * Service;
+  1 <@>- * ParkingSpot;
+  int openTime;
+  int closeTime;
+    int monthlyFee;
+  int hourlyFee;
+}
+
+class Bill
+{
+  int price;
+  
+  * -> * Employee;
+  * -> * Customer;
+  }
+
+class ServiceRequest
+{
+  * -> 1 Service;
+  * -> 1 Bill;
+  
+}
+
+enum Floor {1,2,3,4,5}
